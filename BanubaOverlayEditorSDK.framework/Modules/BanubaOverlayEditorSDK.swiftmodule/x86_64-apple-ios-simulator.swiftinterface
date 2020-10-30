@@ -18,6 +18,7 @@ public struct OverlayEditorConfiguration {
 public struct MainOverlayViewControllerConfig {
   public var editButtons: [BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig]
   public var editButtonsHeight: CoreGraphics.CGFloat
+  public var editButtonsInteritemSpacing: CoreGraphics.CGFloat
   public var editCompositionButtons: [BanubaOverlayEditorSDK.OverlayEditCompositionButtonConfig]
   public var controlButtons: [BanubaOverlayEditorSDK.OverlayControlButtonConfig]
   public var playerControlsHeight: CoreGraphics.CGFloat
@@ -35,6 +36,8 @@ public struct MainOverlayViewControllerConfig {
   public var defaultLinesCount: Swift.Int
   public var timelineCornerRadius: CoreGraphics.CGFloat
   public var draggerBackgroundColor: UIKit.UIColor
+  public var timeLabelsOffset: CoreGraphics.CGFloat
+  public var itemsTopOffset: CoreGraphics.CGFloat
 }
 public struct OverlayEditorEditButtonConfig {
   public enum `Type` : Swift.String {
@@ -174,6 +177,8 @@ public protocol OverlayItem {
   var endTime: CoreMedia.CMTime { get set }
   var presentationStyle: BanubaOverlayEditorSDK.OverlayItemPresentationStyle { get }
   var isEditable: Swift.Bool { get }
+  var frame: CoreGraphics.CGRect { get set }
+  var transform: CoreGraphics.CGAffineTransform { get set }
 }
 public enum OverlayItemPresentationStyle {
   case text(Swift.String)
