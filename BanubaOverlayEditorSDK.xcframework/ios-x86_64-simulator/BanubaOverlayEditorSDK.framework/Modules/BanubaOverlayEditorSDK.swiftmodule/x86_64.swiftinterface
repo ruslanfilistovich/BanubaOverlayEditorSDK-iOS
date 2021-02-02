@@ -9,19 +9,21 @@ import Swift
 import UIKit
 @_inheritsConvenienceInitializers @objc public class OverlayEditorConfiguration : ObjectiveC.NSObject {
   @objc public var mainOverlayViewControllerConfig: BanubaOverlayEditorSDK.MainOverlayViewControllerConfig
+  @objc public var overlayType: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType
+  public var selectedOverlayItem: BanubaOverlayEditorSDK.OverlayItem?
   @objc public var interactivesConfig: BanubaOverlayEditorSDK.InteractivesConfiguration?
   @objc public static var `default`: BanubaOverlayEditorSDK.OverlayEditorConfiguration {
     @objc get
   }
   @objc override dynamic public init()
-  @objc public init(mainOverlayViewControllerConfig: BanubaOverlayEditorSDK.MainOverlayViewControllerConfig)
+  public init(mainOverlayViewControllerConfig: BanubaOverlayEditorSDK.MainOverlayViewControllerConfig, overlayType: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType, selectedOverlayItem: BanubaOverlayEditorSDK.OverlayItem? = nil)
   @objc deinit
 }
 @objc public class MainOverlayViewControllerConfig : ObjectiveC.NSObject {
-  @objc public var editButtons: [BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig]
+  @objc public var editButtons: [BanubaOverlayEditorSDK.OverlayEditButtonConfig]?
+  @objc public var addButtons: [BanubaOverlayEditorSDK.OverlayAddButtonConfig]
   @objc public var editButtonsHeight: CoreGraphics.CGFloat
   @objc public var editButtonsInteritemSpacing: CoreGraphics.CGFloat
-  @objc public var editCompositionButtons: [BanubaOverlayEditorSDK.OverlayEditCompositionButtonConfig]
   @objc public var controlButtons: [BanubaOverlayEditorSDK.OverlayControlButtonConfig]
   @objc public var playerControlsHeight: CoreGraphics.CGFloat
   @objc public var mainLabelColors: UIKit.UIColor
@@ -32,19 +34,19 @@ import UIKit
   @objc public var resizeImageName: Swift.String
   @objc public var draggersHorizontalInset: CoreGraphics.CGFloat
   @objc public var draggersHeight: CoreGraphics.CGFloat
-  @objc public var backgroundConfiguration: BanubaOverlayEditorSDK.OverlayEditor.BackgroundConfiguration
-  @objc public var playerControlsBackgroundConfiguration: BanubaOverlayEditorSDK.OverlayEditor.BackgroundConfiguration
+  @objc public var backgroundConfiguration: BanubaOverlayEditorSDK.OverlayEditor.OverlayEditorBackgroundConfiguration
+  @objc public var playerControlsBackgroundConfiguration: BanubaOverlayEditorSDK.OverlayEditor.OverlayEditorBackgroundConfiguration
   @objc public var defaultLinesCount: Swift.Int
   @objc public var timelineCornerRadius: CoreGraphics.CGFloat
   @objc public var draggerBackgroundColor: UIKit.UIColor
   @objc public var timeLabelsOffset: CoreGraphics.CGFloat
   @objc public var itemsTopOffset: CoreGraphics.CGFloat
-  @objc public init(editButtons: [BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig], editButtonsHeight: CoreGraphics.CGFloat, editButtonsInteritemSpacing: CoreGraphics.CGFloat, editCompositionButtons: [BanubaOverlayEditorSDK.OverlayEditCompositionButtonConfig], controlButtons: [BanubaOverlayEditorSDK.OverlayControlButtonConfig], playerControlsHeight: CoreGraphics.CGFloat, mainLabelColors: UIKit.UIColor, additionalLabelColors: UIKit.UIColor, additionalLabelFonts: UIKit.UIFont, cursorColor: UIKit.UIColor, audioWaveConfiguration: BanubaOverlayEditorSDK.OverlayItemConfiguration, resizeImageName: Swift.String, draggersHorizontalInset: CoreGraphics.CGFloat, draggersHeight: CoreGraphics.CGFloat, backgroundConfiguration: BanubaOverlayEditorSDK.OverlayEditor.BackgroundConfiguration, playerControlsBackgroundConfiguration: BanubaOverlayEditorSDK.OverlayEditor.BackgroundConfiguration, defaultLinesCount: Swift.Int, timelineCornerRadius: CoreGraphics.CGFloat, draggerBackgroundColor: UIKit.UIColor, timeLabelsOffset: CoreGraphics.CGFloat, itemsTopOffset: CoreGraphics.CGFloat)
+  @objc public init(addButtons: [BanubaOverlayEditorSDK.OverlayAddButtonConfig], editButtonsHeight: CoreGraphics.CGFloat, editButtonsInteritemSpacing: CoreGraphics.CGFloat, editButtons: [BanubaOverlayEditorSDK.OverlayEditButtonConfig], controlButtons: [BanubaOverlayEditorSDK.OverlayControlButtonConfig], playerControlsHeight: CoreGraphics.CGFloat, mainLabelColors: UIKit.UIColor, additionalLabelColors: UIKit.UIColor, additionalLabelFonts: UIKit.UIFont, cursorColor: UIKit.UIColor, audioWaveConfiguration: BanubaOverlayEditorSDK.OverlayItemConfiguration, resizeImageName: Swift.String, draggersHorizontalInset: CoreGraphics.CGFloat, draggersHeight: CoreGraphics.CGFloat, backgroundConfiguration: BanubaOverlayEditorSDK.OverlayEditor.OverlayEditorBackgroundConfiguration, playerControlsBackgroundConfiguration: BanubaOverlayEditorSDK.OverlayEditor.OverlayEditorBackgroundConfiguration, defaultLinesCount: Swift.Int, timelineCornerRadius: CoreGraphics.CGFloat, draggerBackgroundColor: UIKit.UIColor, timeLabelsOffset: CoreGraphics.CGFloat, itemsTopOffset: CoreGraphics.CGFloat)
   @objc deinit
   @objc override dynamic public init()
 }
-@objc public class OverlayEditorEditButtonConfig : ObjectiveC.NSObject {
-  @objc public enum OverlayEditorEditButtonConfigType : Swift.Int {
+@objc public class OverlayAddButtonConfig : ObjectiveC.NSObject {
+  @objc public enum OverlayAddButtonConfigType : Swift.Int {
     case text = 1
     case sticker = 2
     public typealias RawValue = Swift.Int
@@ -53,17 +55,17 @@ import UIKit
       get
     }
   }
-  @objc final public let type: BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig.OverlayEditorEditButtonConfigType
+  @objc final public let type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType
   @objc final public let title: Swift.String
   @objc final public let titleColor: UIKit.UIColor
   @objc public var font: UIKit.UIFont
   @objc final public let imageName: Swift.String
-  @objc public init(type: BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig.OverlayEditorEditButtonConfigType, title: Swift.String, titleColor: UIKit.UIColor, font: UIKit.UIFont, imageName: Swift.String)
+  @objc public init(type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType, title: Swift.String, titleColor: UIKit.UIColor, font: UIKit.UIFont, imageName: Swift.String)
   @objc deinit
   @objc override dynamic public init()
 }
-@objc public class OverlayEditCompositionButtonConfig : ObjectiveC.NSObject {
-  @objc public enum OverlayEditCompositionButtonConfigType : Swift.Int {
+@objc public class OverlayEditButtonConfig : ObjectiveC.NSObject {
+  @objc public enum OverlayEditButtonConfigType : Swift.Int {
     case edit = 0
     case delete = 1
     public typealias RawValue = Swift.Int
@@ -72,13 +74,13 @@ import UIKit
       get
     }
   }
-  @objc final public let type: BanubaOverlayEditorSDK.OverlayEditCompositionButtonConfig.OverlayEditCompositionButtonConfigType
+  @objc final public let type: BanubaOverlayEditorSDK.OverlayEditButtonConfig.OverlayEditButtonConfigType
   @objc final public let title: Swift.String
   @objc final public let titleColor: UIKit.UIColor
   @objc public var font: UIKit.UIFont
   @objc final public let imageName: Swift.String
   @objc final public let selectedImageName: Swift.String?
-  @objc public init(type: BanubaOverlayEditorSDK.OverlayEditCompositionButtonConfig.OverlayEditCompositionButtonConfigType, title: Swift.String, titleColor: UIKit.UIColor, font: UIKit.UIFont, imageName: Swift.String, selectedImageName: Swift.String?)
+  @objc public init(type: BanubaOverlayEditorSDK.OverlayEditButtonConfig.OverlayEditButtonConfigType, title: Swift.String, titleColor: UIKit.UIColor, font: UIKit.UIFont, imageName: Swift.String, selectedImageName: Swift.String?)
   @objc deinit
   @objc override dynamic public init()
 }
@@ -95,9 +97,8 @@ import UIKit
   }
   @objc final public let type: BanubaOverlayEditorSDK.OverlayControlButtonConfig.OverlayControlButtonConfigType
   @objc final public let imageName: Swift.String
-  @objc final public let selectedImageName: Swift.String
-  @objc final public let imageEdgeInsets: UIKit.UIEdgeInsets
-  @objc public init(type: BanubaOverlayEditorSDK.OverlayControlButtonConfig.OverlayControlButtonConfigType, imageName: Swift.String, selectedImageName: Swift.String, imageEdgeInsets: UIKit.UIEdgeInsets)
+  @objc final public let selectedImageName: Swift.String?
+  @objc public init(type: BanubaOverlayEditorSDK.OverlayControlButtonConfig.OverlayControlButtonConfigType, imageName: Swift.String, selectedImageName: Swift.String)
   @objc deinit
   @objc override dynamic public init()
 }
@@ -115,7 +116,7 @@ import UIKit
   @objc override dynamic public init()
 }
 @_inheritsConvenienceInitializers @objc public class OverlayEditor : ObjectiveC.NSObject {
-  @objc public class TextButtonConfig : ObjectiveC.NSObject {
+  @objc public class OverlayEditorTextButtonConfig : ObjectiveC.NSObject {
     @objc public var font: UIKit.UIFont
     @objc public var color: UIKit.UIColor
     @objc public var title: Swift.String
@@ -123,7 +124,7 @@ import UIKit
     @objc deinit
     @objc override dynamic public init()
   }
-  @objc public class BackgroundConfiguration : ObjectiveC.NSObject {
+  @objc public class OverlayEditorBackgroundConfiguration : ObjectiveC.NSObject {
     @objc public var cornerRadius: CoreGraphics.CGFloat
     @objc public var color: UIKit.UIColor
     @objc public init(cornerRadius: CoreGraphics.CGFloat, color: UIKit.UIColor)
@@ -160,27 +161,21 @@ import UIKit
   @objc override dynamic public init()
 }
 @objc public class EditorQuestionConfiguration : ObjectiveC.NSObject {
-  @objc public init(textFont: UIKit.UIFont)
   @objc public var textFont: UIKit.UIFont
-  @objc public static var `default`: BanubaOverlayEditorSDK.EditorQuestionConfiguration {
-    @objc get
-  }
+  @objc public init(textFont: UIKit.UIFont)
   @objc deinit
   @objc override dynamic public init()
 }
 @objc public class InteractivePollConfiguration : ObjectiveC.NSObject {
-  @objc public init(textFont: UIKit.UIFont)
   @objc public var textFont: UIKit.UIFont
-  @objc public static var `default`: BanubaOverlayEditorSDK.InteractivePollConfiguration {
-    @objc get
-  }
+  @objc public init(textFont: UIKit.UIFont)
   @objc deinit
   @objc override dynamic public init()
 }
 @objc public class InteractiveInterestConfiguration : ObjectiveC.NSObject {
-  @objc public init(font: UIKit.UIFont, provider: BanubaOverlayEditorSDK.InteractiveInterestProvider? = nil)
   @objc public var font: UIKit.UIFont
   @objc public var provider: BanubaOverlayEditorSDK.InteractiveInterestProvider?
+  @objc public init(font: UIKit.UIFont, provider: BanubaOverlayEditorSDK.InteractiveInterestProvider? = nil)
   @objc deinit
   @objc override dynamic public init()
 }
@@ -221,6 +216,7 @@ public protocol OverlayItem {
   var isEditable: Swift.Bool { get }
   var frame: CoreGraphics.CGRect { get set }
   var transform: CoreGraphics.CGAffineTransform { get set }
+  var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType? { get set }
 }
 public enum OverlayItemPresentationStyle {
   case text(Swift.String)
@@ -265,6 +261,7 @@ public struct InteractiveTest : BanubaOverlayEditorSDK.OverlayItem {
   public var fields: [BanubaOverlayEditorSDK.InteractiveTestFieldData]
   public var frame: CoreGraphics.CGRect
   public var transform: CoreGraphics.CGAffineTransform
+  public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType?
   public init(id: Swift.String, title: Swift.String, image: UIKit.UIImage, color: BanubaOverlayEditorSDK.GradientColorPair, fields: [BanubaOverlayEditorSDK.InteractiveTestFieldData], startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
 }
 public struct InteractiveTestFieldData {
@@ -288,7 +285,7 @@ public protocol OverlayItemProducibleViewController : UIKit.UIViewController {
 }
 public protocol OverlayItemProducersViewControllerFactory : AnyObject {
   func makeOverlayItemProducibleViewController(for overlayItem: BanubaOverlayEditorSDK.OverlayItem) -> BanubaOverlayEditorSDK.OverlayItemProducibleViewController?
-  func makeOverlayItemProducibleViewController(for type: BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig.OverlayEditorEditButtonConfigType) -> BanubaOverlayEditorSDK.OverlayItemProducibleViewController
+  func makeOverlayItemProducibleViewController(for type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType) -> BanubaOverlayEditorSDK.OverlayItemProducibleViewController
 }
 public class BanubaOverlayEditor {
   weak public var delegate: BanubaOverlayEditorSDK.BanubaOverlayEditorDelegate?
@@ -385,6 +382,7 @@ public struct InteractiveInterest : BanubaOverlayEditorSDK.OverlayItem {
   }
   public var frame: CoreGraphics.CGRect
   public var transform: CoreGraphics.CGAffineTransform
+  public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType?
   public init(id: Swift.String, image: UIKit.UIImage, title: Swift.String, font: UIKit.UIFont, startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
 }
 public struct InteractivePoll : BanubaOverlayEditorSDK.OverlayItem {
@@ -403,6 +401,7 @@ public struct InteractivePoll : BanubaOverlayEditorSDK.OverlayItem {
   public var rightCardText: Swift.String
   public var frame: CoreGraphics.CGRect
   public var transform: CoreGraphics.CGAffineTransform
+  public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType?
   public init(id: Swift.String, image: UIKit.UIImage, startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, title: Swift.String, leftCardText: Swift.String, rightCardText: Swift.String, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
 }
 public protocol OverlayItemConsumable : UIKit.UIViewController {
@@ -446,14 +445,15 @@ public struct EditorQuestion : BanubaOverlayEditorSDK.OverlayItem {
   }
   public var frame: CoreGraphics.CGRect
   public var transform: CoreGraphics.CGAffineTransform
+  public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType?
   public init(id: Swift.String, text: Swift.String, color: BanubaOverlayEditorSDK.GradientColorPair, image: UIKit.UIImage, startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
 }
-extension BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig.OverlayEditorEditButtonConfigType : Swift.Equatable {}
-extension BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig.OverlayEditorEditButtonConfigType : Swift.Hashable {}
-extension BanubaOverlayEditorSDK.OverlayEditorEditButtonConfig.OverlayEditorEditButtonConfigType : Swift.RawRepresentable {}
-extension BanubaOverlayEditorSDK.OverlayEditCompositionButtonConfig.OverlayEditCompositionButtonConfigType : Swift.Equatable {}
-extension BanubaOverlayEditorSDK.OverlayEditCompositionButtonConfig.OverlayEditCompositionButtonConfigType : Swift.Hashable {}
-extension BanubaOverlayEditorSDK.OverlayEditCompositionButtonConfig.OverlayEditCompositionButtonConfigType : Swift.RawRepresentable {}
+extension BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType : Swift.Equatable {}
+extension BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType : Swift.Hashable {}
+extension BanubaOverlayEditorSDK.OverlayAddButtonConfig.OverlayAddButtonConfigType : Swift.RawRepresentable {}
+extension BanubaOverlayEditorSDK.OverlayEditButtonConfig.OverlayEditButtonConfigType : Swift.Equatable {}
+extension BanubaOverlayEditorSDK.OverlayEditButtonConfig.OverlayEditButtonConfigType : Swift.Hashable {}
+extension BanubaOverlayEditorSDK.OverlayEditButtonConfig.OverlayEditButtonConfigType : Swift.RawRepresentable {}
 extension BanubaOverlayEditorSDK.OverlayControlButtonConfig.OverlayControlButtonConfigType : Swift.Equatable {}
 extension BanubaOverlayEditorSDK.OverlayControlButtonConfig.OverlayControlButtonConfigType : Swift.Hashable {}
 extension BanubaOverlayEditorSDK.OverlayControlButtonConfig.OverlayControlButtonConfigType : Swift.RawRepresentable {}

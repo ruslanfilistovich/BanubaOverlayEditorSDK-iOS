@@ -3,7 +3,7 @@
 //  BanubaOverlayEditorSDK
 //
 //  Created by Andrei Sak on 6/16/20.
-//  Copyright © 2020 Banuba. All rights reserved.
+//   2020 Banuba. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

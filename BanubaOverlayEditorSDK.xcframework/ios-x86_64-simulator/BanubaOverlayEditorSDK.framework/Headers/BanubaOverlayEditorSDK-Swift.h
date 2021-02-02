@@ -213,12 +213,12 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 @class UIFont;
 
+/// The Interactive question configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK27EditorQuestionConfiguration")
 @interface EditorQuestionConfiguration : NSObject
-- (nonnull instancetype)initWithTextFont:(UIFont * _Nonnull)textFont OBJC_DESIGNATED_INITIALIZER;
+/// Text font
 @property (nonatomic, strong) UIFont * _Nonnull textFont;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong, getter=default) EditorQuestionConfiguration * _Nonnull default_;)
-+ (EditorQuestionConfiguration * _Nonnull)default SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)initWithTextFont:(UIFont * _Nonnull)textFont OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -242,19 +242,25 @@ SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK28EditorQuestionViewController")
 
 @protocol InteractiveInterestProvider;
 
+/// The Interactive interest configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK32InteractiveInterestConfiguration")
 @interface InteractiveInterestConfiguration : NSObject
-- (nonnull instancetype)initWithFont:(UIFont * _Nonnull)font provider:(id <InteractiveInterestProvider> _Nullable)provider OBJC_DESIGNATED_INITIALIZER;
+/// Text font
 @property (nonatomic, strong) UIFont * _Nonnull font;
+/// Search results provider
 @property (nonatomic, strong) id <InteractiveInterestProvider> _Nullable provider;
+- (nonnull instancetype)initWithFont:(UIFont * _Nonnull)font provider:(id <InteractiveInterestProvider> _Nullable)provider OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 
+/// The Interactive interest search provider
 SWIFT_PROTOCOL("_TtP22BanubaOverlayEditorSDK27InteractiveInterestProvider_")
 @protocol InteractiveInterestProvider
+/// Search matching text
 - (void)searchTitle:(NSString * _Nonnull)title;
+/// Handler used to get searching result
 @property (nonatomic, copy) void (^ _Nullable resultHandler)(NSArray<NSString *> * _Nonnull);
 @end
 
@@ -291,12 +297,12 @@ SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK31InteractivePickerViewController")
 
 
 
+/// The Interactive poll configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK28InteractivePollConfiguration")
 @interface InteractivePollConfiguration : NSObject
-- (nonnull instancetype)initWithTextFont:(UIFont * _Nonnull)textFont OBJC_DESIGNATED_INITIALIZER;
+/// Text font
 @property (nonatomic, strong) UIFont * _Nonnull textFont;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong, getter=default) InteractivePollConfiguration * _Nonnull default_;)
-+ (InteractivePollConfiguration * _Nonnull)default SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)initWithTextFont:(UIFont * _Nonnull)textFont OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -317,6 +323,7 @@ SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK29InteractivePollViewController")
 
 
 
+/// The Interactive test configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK28InteractiveTestConfiguration")
 @interface InteractiveTestConfiguration : NSObject
 - (nonnull instancetype)initWithFont:(UIFont * _Nonnull)font OBJC_DESIGNATED_INITIALIZER;
@@ -350,13 +357,20 @@ SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK29InteractiveTestViewController")
 
 @class InteractivesPickerConfiguration;
 
+/// The Interactives configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK25InteractivesConfiguration")
 @interface InteractivesConfiguration : NSObject
+/// Interactives picker configuration
 @property (nonatomic, strong) InteractivesPickerConfiguration * _Nonnull interactivesPickerConfiguration;
+/// Interactive test configuration
 @property (nonatomic, strong) InteractiveTestConfiguration * _Nullable interactiveTestConfiguration;
+/// Interactive question configuration
 @property (nonatomic, strong) EditorQuestionConfiguration * _Nullable editorQuestionConfiguration;
+/// Interactive poll configuration
 @property (nonatomic, strong) InteractivePollConfiguration * _Nullable interactivePollConfiguration;
+/// Interactive interest configuration
 @property (nonatomic, strong) InteractiveInterestConfiguration * _Nullable interactiveInterestConfiguration;
+/// Default configuration
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong, getter=default) InteractivesConfiguration * _Nonnull default_;)
 + (InteractivesConfiguration * _Nonnull)default SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithInteractivesPickerConfiguration:(InteractivesPickerConfiguration * _Nonnull)interactivesPickerConfiguration interactiveTestConfiguration:(InteractiveTestConfiguration * _Nullable)interactiveTestConfiguration editorQuestionConfiguration:(EditorQuestionConfiguration * _Nullable)editorQuestionConfiguration interactivePollConfiguration:(InteractivePollConfiguration * _Nullable)interactivePollConfiguration interactiveInterestConfiguration:(InteractiveInterestConfiguration * _Nullable)interactiveInterestConfiguration OBJC_DESIGNATED_INITIALIZER;
@@ -365,100 +379,198 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong, getter=defau
 @end
 
 
+/// The Interactive picker configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK31InteractivesPickerConfiguration")
 @interface InteractivesPickerConfiguration : NSObject
+/// Default interactives
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong, getter=default) InteractivesPickerConfiguration * _Nonnull default_;)
 + (InteractivesPickerConfiguration * _Nonnull)default SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-@class OverlayEditorEditButtonConfig;
-@class OverlayEditCompositionButtonConfig;
+@class OverlayEditButtonConfig;
+@class OverlayAddButtonConfig;
 @class OverlayControlButtonConfig;
 @class UIColor;
 @class OverlayItemConfiguration;
-@class BackgroundConfiguration;
+@class OverlayEditorBackgroundConfiguration;
 
+/// The Main overlay screen configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK31MainOverlayViewControllerConfig")
 @interface MainOverlayViewControllerConfig : NSObject
-@property (nonatomic, copy) NSArray<OverlayEditorEditButtonConfig *> * _Nonnull editButtons;
+/// Array of adding buttons
+@property (nonatomic, copy) NSArray<OverlayEditButtonConfig *> * _Nullable editButtons;
+/// Array of adding buttons
+@property (nonatomic, copy) NSArray<OverlayAddButtonConfig *> * _Nonnull addButtons;
+/// Height for adding buttons’ container
 @property (nonatomic) CGFloat editButtonsHeight;
+/// Spacing between adding buttons
 @property (nonatomic) CGFloat editButtonsInteritemSpacing;
-@property (nonatomic, copy) NSArray<OverlayEditCompositionButtonConfig *> * _Nonnull editCompositionButtons;
+/// Array of control buttons
 @property (nonatomic, copy) NSArray<OverlayControlButtonConfig *> * _Nonnull controlButtons;
+/// Controls container height
 @property (nonatomic) CGFloat playerControlsHeight;
+/// Main labels title color
 @property (nonatomic, strong) UIColor * _Nonnull mainLabelColors;
+/// Additional labels title color
 @property (nonatomic, strong) UIColor * _Nonnull additionalLabelColors;
+/// Additional labels title font
 @property (nonatomic, strong) UIFont * _Nonnull additionalLabelFonts;
+/// Cursor color
 @property (nonatomic, strong) UIColor * _Nonnull cursorColor;
+/// OverlayItemConfiguration setups time line items styles
 @property (nonatomic, strong) OverlayItemConfiguration * _Nonnull audioWaveConfiguration;
+/// Image name setups resize draggers UIImage
 @property (nonatomic, copy) NSString * _Nonnull resizeImageName;
+/// Draggers horizontal inset
 @property (nonatomic) CGFloat draggersHorizontalInset;
+/// Draggers views’ height
 @property (nonatomic) CGFloat draggersHeight;
-@property (nonatomic, strong) BackgroundConfiguration * _Nonnull backgroundConfiguration;
-@property (nonatomic, strong) BackgroundConfiguration * _Nonnull playerControlsBackgroundConfiguration;
+/// BackgroundConfiguration setups background view style
+@property (nonatomic, strong) OverlayEditorBackgroundConfiguration * _Nonnull backgroundConfiguration;
+/// BackgroundConfiguration setups player controls background view style
+@property (nonatomic, strong) OverlayEditorBackgroundConfiguration * _Nonnull playerControlsBackgroundConfiguration;
+/// Default number of time limes
 @property (nonatomic) NSInteger defaultLinesCount;
+/// Time line corner raduis
 @property (nonatomic) CGFloat timelineCornerRadius;
+/// Draggers views’ background color
 @property (nonatomic, strong) UIColor * _Nonnull draggerBackgroundColor;
+/// Time labels offset
 @property (nonatomic) CGFloat timeLabelsOffset;
+/// Top items offset
 @property (nonatomic) CGFloat itemsTopOffset;
-- (nonnull instancetype)initWithEditButtons:(NSArray<OverlayEditorEditButtonConfig *> * _Nonnull)editButtons editButtonsHeight:(CGFloat)editButtonsHeight editButtonsInteritemSpacing:(CGFloat)editButtonsInteritemSpacing editCompositionButtons:(NSArray<OverlayEditCompositionButtonConfig *> * _Nonnull)editCompositionButtons controlButtons:(NSArray<OverlayControlButtonConfig *> * _Nonnull)controlButtons playerControlsHeight:(CGFloat)playerControlsHeight mainLabelColors:(UIColor * _Nonnull)mainLabelColors additionalLabelColors:(UIColor * _Nonnull)additionalLabelColors additionalLabelFonts:(UIFont * _Nonnull)additionalLabelFonts cursorColor:(UIColor * _Nonnull)cursorColor audioWaveConfiguration:(OverlayItemConfiguration * _Nonnull)audioWaveConfiguration resizeImageName:(NSString * _Nonnull)resizeImageName draggersHorizontalInset:(CGFloat)draggersHorizontalInset draggersHeight:(CGFloat)draggersHeight backgroundConfiguration:(BackgroundConfiguration * _Nonnull)backgroundConfiguration playerControlsBackgroundConfiguration:(BackgroundConfiguration * _Nonnull)playerControlsBackgroundConfiguration defaultLinesCount:(NSInteger)defaultLinesCount timelineCornerRadius:(CGFloat)timelineCornerRadius draggerBackgroundColor:(UIColor * _Nonnull)draggerBackgroundColor timeLabelsOffset:(CGFloat)timeLabelsOffset itemsTopOffset:(CGFloat)itemsTopOffset OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithAddButtons:(NSArray<OverlayAddButtonConfig *> * _Nonnull)addButtons editButtonsHeight:(CGFloat)editButtonsHeight editButtonsInteritemSpacing:(CGFloat)editButtonsInteritemSpacing editButtons:(NSArray<OverlayEditButtonConfig *> * _Nonnull)editButtons controlButtons:(NSArray<OverlayControlButtonConfig *> * _Nonnull)controlButtons playerControlsHeight:(CGFloat)playerControlsHeight mainLabelColors:(UIColor * _Nonnull)mainLabelColors additionalLabelColors:(UIColor * _Nonnull)additionalLabelColors additionalLabelFonts:(UIFont * _Nonnull)additionalLabelFonts cursorColor:(UIColor * _Nonnull)cursorColor audioWaveConfiguration:(OverlayItemConfiguration * _Nonnull)audioWaveConfiguration resizeImageName:(NSString * _Nonnull)resizeImageName draggersHorizontalInset:(CGFloat)draggersHorizontalInset draggersHeight:(CGFloat)draggersHeight backgroundConfiguration:(OverlayEditorBackgroundConfiguration * _Nonnull)backgroundConfiguration playerControlsBackgroundConfiguration:(OverlayEditorBackgroundConfiguration * _Nonnull)playerControlsBackgroundConfiguration defaultLinesCount:(NSInteger)defaultLinesCount timelineCornerRadius:(CGFloat)timelineCornerRadius draggerBackgroundColor:(UIColor * _Nonnull)draggerBackgroundColor timeLabelsOffset:(CGFloat)timeLabelsOffset itemsTopOffset:(CGFloat)itemsTopOffset OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+enum OverlayAddButtonConfigType : NSInteger;
+
+/// The Overlay adding button configuration
+SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK22OverlayAddButtonConfig")
+@interface OverlayAddButtonConfig : NSObject
+/// Type of the button
+@property (nonatomic, readonly) enum OverlayAddButtonConfigType type;
+/// Button title
+@property (nonatomic, readonly, copy) NSString * _Nonnull title;
+/// Button title color
+@property (nonatomic, readonly, strong) UIColor * _Nonnull titleColor;
+/// Button title font
+@property (nonatomic, strong) UIFont * _Nonnull font;
+/// ImageName setups UIImage for additional button’s UIImageView
+@property (nonatomic, readonly, copy) NSString * _Nonnull imageName;
+/// Additional init
+/// \param type Type of the button
+///
+/// \param title Button title
+///
+/// \param titleColor Button title color
+///
+/// \param font Button title font
+///
+/// \param imageName ImageName setups UIImage for additional button’s UIImageView
+///
+- (nonnull instancetype)initWithType:(enum OverlayAddButtonConfigType)type title:(NSString * _Nonnull)title titleColor:(UIColor * _Nonnull)titleColor font:(UIFont * _Nonnull)font imageName:(NSString * _Nonnull)imageName OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+/// Main types enum
+typedef SWIFT_ENUM(NSInteger, OverlayAddButtonConfigType, open) {
+  OverlayAddButtonConfigTypeText = 1,
+  OverlayAddButtonConfigTypeSticker = 2,
+};
 
 enum OverlayControlButtonConfigType : NSInteger;
 
+/// The Overlay control button configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK26OverlayControlButtonConfig")
 @interface OverlayControlButtonConfig : NSObject
+/// Type of the button
 @property (nonatomic, readonly) enum OverlayControlButtonConfigType type;
+/// ImageName setups normal UIImage for additional button’s UIImageView
 @property (nonatomic, readonly, copy) NSString * _Nonnull imageName;
-@property (nonatomic, readonly, copy) NSString * _Nonnull selectedImageName;
-@property (nonatomic, readonly) UIEdgeInsets imageEdgeInsets;
-- (nonnull instancetype)initWithType:(enum OverlayControlButtonConfigType)type imageName:(NSString * _Nonnull)imageName selectedImageName:(NSString * _Nonnull)selectedImageName imageEdgeInsets:(UIEdgeInsets)imageEdgeInsets OBJC_DESIGNATED_INITIALIZER;
+/// ImageName setups  selected UIImage for additional button’s UIImageView
+@property (nonatomic, readonly, copy) NSString * _Nullable selectedImageName;
+/// Additional init
+/// \param type Type of the button
+///
+/// \param imageName ImageName setups normal UIImage for additional button’s UIImageView
+///
+/// \param selectedImageName ImageName setups selected UIImage for additional button’s UIImageView
+///
+- (nonnull instancetype)initWithType:(enum OverlayControlButtonConfigType)type imageName:(NSString * _Nonnull)imageName selectedImageName:(NSString * _Nonnull)selectedImageName OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+/// Main types enum
 typedef SWIFT_ENUM(NSInteger, OverlayControlButtonConfigType, open) {
   OverlayControlButtonConfigTypeReset = 0,
   OverlayControlButtonConfigTypePlay = 1,
   OverlayControlButtonConfigTypeDone = 2,
 };
 
-enum OverlayEditCompositionButtonConfigType : NSInteger;
+enum OverlayEditButtonConfigType : NSInteger;
 
-SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK34OverlayEditCompositionButtonConfig")
-@interface OverlayEditCompositionButtonConfig : NSObject
-@property (nonatomic, readonly) enum OverlayEditCompositionButtonConfigType type;
+/// The Overlay adding button configuration
+SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK23OverlayEditButtonConfig")
+@interface OverlayEditButtonConfig : NSObject
+/// Type of the button
+@property (nonatomic, readonly) enum OverlayEditButtonConfigType type;
+/// Button title
 @property (nonatomic, readonly, copy) NSString * _Nonnull title;
+/// Button title color
 @property (nonatomic, readonly, strong) UIColor * _Nonnull titleColor;
+/// Button title font
 @property (nonatomic, strong) UIFont * _Nonnull font;
+/// ImageName setups normal UIImage for additional button’s UIImageView
 @property (nonatomic, readonly, copy) NSString * _Nonnull imageName;
+/// ImageName setups  selected UIImage for additional button’s UIImageView
 @property (nonatomic, readonly, copy) NSString * _Nullable selectedImageName;
-- (nonnull instancetype)initWithType:(enum OverlayEditCompositionButtonConfigType)type title:(NSString * _Nonnull)title titleColor:(UIColor * _Nonnull)titleColor font:(UIFont * _Nonnull)font imageName:(NSString * _Nonnull)imageName selectedImageName:(NSString * _Nullable)selectedImageName OBJC_DESIGNATED_INITIALIZER;
+/// Additional init
+/// \param type Type of the button
+///
+/// \param title Button title
+///
+/// \param titleColor Button title color
+///
+/// \param font Button title font
+///
+/// \param imageName ImageName setups normal UIImage for additional button’s UIImageView
+///
+/// \param selectedImageName ImageName setups selected UIImage for additional button’s UIImageView
+///
+- (nonnull instancetype)initWithType:(enum OverlayEditButtonConfigType)type title:(NSString * _Nonnull)title titleColor:(UIColor * _Nonnull)titleColor font:(UIFont * _Nonnull)font imageName:(NSString * _Nonnull)imageName selectedImageName:(NSString * _Nullable)selectedImageName OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-typedef SWIFT_ENUM(NSInteger, OverlayEditCompositionButtonConfigType, open) {
-  OverlayEditCompositionButtonConfigTypeEdit = 0,
-  OverlayEditCompositionButtonConfigTypeDelete = 1,
+/// Main types enum
+typedef SWIFT_ENUM(NSInteger, OverlayEditButtonConfigType, open) {
+  OverlayEditButtonConfigTypeEdit = 0,
+  OverlayEditButtonConfigTypeDelete = 1,
 };
 
 
+/// The Overlay Editor namespace
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK13OverlayEditor")
 @interface OverlayEditor : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
-SWIFT_CLASS("_TtCC22BanubaOverlayEditorSDK13OverlayEditor16TextButtonConfig")
-@interface TextButtonConfig : NSObject
+/// The text button configuration
+SWIFT_CLASS("_TtCC22BanubaOverlayEditorSDK13OverlayEditor29OverlayEditorTextButtonConfig")
+@interface OverlayEditorTextButtonConfig : NSObject
+/// Button title font
 @property (nonatomic, strong) UIFont * _Nonnull font;
+/// Button title color
 @property (nonatomic, strong) UIColor * _Nonnull color;
+/// Button title
 @property (nonatomic, copy) NSString * _Nonnull title;
 - (nonnull instancetype)initWithFont:(UIFont * _Nonnull)font color:(UIColor * _Nonnull)color title:(NSString * _Nonnull)title OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -466,9 +578,12 @@ SWIFT_CLASS("_TtCC22BanubaOverlayEditorSDK13OverlayEditor16TextButtonConfig")
 @end
 
 
-SWIFT_CLASS("_TtCC22BanubaOverlayEditorSDK13OverlayEditor23BackgroundConfiguration")
-@interface BackgroundConfiguration : NSObject
+/// THe Background configuration
+SWIFT_CLASS("_TtCC22BanubaOverlayEditorSDK13OverlayEditor36OverlayEditorBackgroundConfiguration")
+@interface OverlayEditorBackgroundConfiguration : NSObject
+/// Corner radius
 @property (nonatomic) CGFloat cornerRadius;
+/// Background color
 @property (nonatomic, strong) UIColor * _Nonnull color;
 - (nonnull instancetype)initWithCornerRadius:(CGFloat)cornerRadius color:(UIColor * _Nonnull)color OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -476,45 +591,41 @@ SWIFT_CLASS("_TtCC22BanubaOverlayEditorSDK13OverlayEditor23BackgroundConfigurati
 @end
 
 
+/// The Overlay editor configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK26OverlayEditorConfiguration")
 @interface OverlayEditorConfiguration : NSObject
+/// MainOverlayViewControllerConfig setups main overlay screen
 @property (nonatomic, strong) MainOverlayViewControllerConfig * _Nonnull mainOverlayViewControllerConfig;
+/// Types of editing overlay items. Can be .text or .sticker
+@property (nonatomic) enum OverlayAddButtonConfigType overlayType;
+/// InteractivesConfiguration setups interactive views styles
 @property (nonatomic, strong) InteractivesConfiguration * _Nullable interactivesConfig;
+/// Default Configuration
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong, getter=default) OverlayEditorConfiguration * _Nonnull default_;)
 + (OverlayEditorConfiguration * _Nonnull)default SWIFT_WARN_UNUSED_RESULT;
+/// Default Init
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithMainOverlayViewControllerConfig:(MainOverlayViewControllerConfig * _Nonnull)mainOverlayViewControllerConfig OBJC_DESIGNATED_INITIALIZER;
 @end
 
-enum OverlayEditorEditButtonConfigType : NSInteger;
 
-SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK29OverlayEditorEditButtonConfig")
-@interface OverlayEditorEditButtonConfig : NSObject
-@property (nonatomic, readonly) enum OverlayEditorEditButtonConfigType type;
-@property (nonatomic, readonly, copy) NSString * _Nonnull title;
-@property (nonatomic, readonly, strong) UIColor * _Nonnull titleColor;
-@property (nonatomic, strong) UIFont * _Nonnull font;
-@property (nonatomic, readonly, copy) NSString * _Nonnull imageName;
-- (nonnull instancetype)initWithType:(enum OverlayEditorEditButtonConfigType)type title:(NSString * _Nonnull)title titleColor:(UIColor * _Nonnull)titleColor font:(UIFont * _Nonnull)font imageName:(NSString * _Nonnull)imageName OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-typedef SWIFT_ENUM(NSInteger, OverlayEditorEditButtonConfigType, open) {
-  OverlayEditorEditButtonConfigTypeText = 1,
-  OverlayEditorEditButtonConfigTypeSticker = 2,
-};
-
-
+/// The Overaly time line item configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK24OverlayItemConfiguration")
 @interface OverlayItemConfiguration : NSObject
+/// Border color
 @property (nonatomic, strong) UIColor * _Nonnull borderColor;
+/// Corner radius
 @property (nonatomic) CGFloat cornerRadius;
+/// Border width
 @property (nonatomic) CGFloat borderWidth;
+/// Border Inset
 @property (nonatomic) CGFloat borderInset;
+/// Item height
 @property (nonatomic) CGFloat height;
+/// Item title font
 @property (nonatomic, strong) UIFont * _Nullable titleFont;
+/// Item title color
 @property (nonatomic, strong) UIColor * _Nullable titleColor;
+/// Item image inset
 @property (nonatomic) UIEdgeInsets imageInset;
 - (nonnull instancetype)initWithBorderColor:(UIColor * _Nonnull)borderColor cornerRadius:(CGFloat)cornerRadius borderWidth:(CGFloat)borderWidth borderInset:(CGFloat)borderInset height:(CGFloat)height titleFont:(UIFont * _Nullable)titleFont titleColor:(UIColor * _Nullable)titleColor imageInset:(UIEdgeInsets)imageInset OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -523,6 +634,7 @@ SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK24OverlayItemConfiguration")
 
 
 
+/// The Interactives types
 typedef SWIFT_ENUM(NSInteger, VideoEditorInteractiveType, open) {
   VideoEditorInteractiveTypeInterest = 0,
   VideoEditorInteractiveTypeQuestion = 1,
