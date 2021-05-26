@@ -3,6 +3,7 @@
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name BanubaOverlayEditorSDK
 import AVFoundation
 @_exported import BanubaOverlayEditorSDK
+import BanubaUtilities
 import CoreGraphics
 import Foundation
 import Swift
@@ -297,17 +298,6 @@ public class BanubaOverlayEditor {
   public func dismissOverlayEditor(animated: Swift.Bool, completion: (() -> Swift.Void)?)
   @objc deinit
 }
-public struct AlertViewConfiguration {
-  public var cornerRadius: CoreGraphics.CGFloat
-  public var buttonRadius: CoreGraphics.CGFloat
-  public var refuseButtonBackgroundColor: UIKit.UIColor
-  public var refuseButtonTextColor: UIKit.UIColor
-  public var agreeButtonBackgroundColor: UIKit.UIColor
-  public var agreeButtonTextColor: UIKit.UIColor
-  public var titleAligment: UIKit.NSTextAlignment
-  public var titleFont: UIKit.UIFont
-  public var buttonsFont: UIKit.UIFont
-}
 public enum CameraAlertType {
   case discardChanges
   public var title: Swift.String {
@@ -409,30 +399,6 @@ public struct InteractiveInterest : BanubaOverlayEditorSDK.OverlayItem {
   public var transform: CoreGraphics.CGAffineTransform
   public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.`Type`?
   public init(id: Swift.String, image: UIKit.UIImage, title: Swift.String, font: UIKit.UIFont, startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
-}
-@objc @_inheritsConvenienceInitializers public class OverlayAlertViewController : UIKit.UIViewController {
-  public enum AlertType {
-    case selection
-    public static func == (a: BanubaOverlayEditorSDK.OverlayAlertViewController.AlertType, b: BanubaOverlayEditorSDK.OverlayAlertViewController.AlertType) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-  public var messageText: Swift.String? {
-    get
-    set(value)
-  }
-  public var alertType: BanubaOverlayEditorSDK.OverlayAlertViewController.AlertType? {
-    get
-    set(value)
-  }
-  public var configuration: BanubaOverlayEditorSDK.AlertViewConfiguration?
-  public var actionHandler: ((Swift.Bool) -> Swift.Void)?
-  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
 }
 public struct InteractivePoll : BanubaOverlayEditorSDK.OverlayItem {
   public var id: Swift.String
