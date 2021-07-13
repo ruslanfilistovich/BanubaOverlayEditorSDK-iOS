@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name BanubaOverlayEditorSDK
 import AVFoundation
 @_exported import BanubaOverlayEditorSDK
@@ -35,13 +35,14 @@ public struct MainOverlayViewControllerConfig {
   public var resizeImageName: Swift.String
   public var draggersHorizontalInset: CoreGraphics.CGFloat
   public var draggersHeight: CoreGraphics.CGFloat?
-  public var backgroundConfiguration: BanubaOverlayEditorSDK.BackgroundConfiguration
-  public var playerControlsBackgroundConfiguration: BanubaOverlayEditorSDK.BackgroundConfiguration
+  public var backgroundConfiguration: BanubaUtilities.BackgroundConfiguration
+  public var playerControlsBackgroundConfiguration: BanubaUtilities.BackgroundConfiguration
   public var defaultLinesCount: Swift.Int
   public var timelineCornerRadius: CoreGraphics.CGFloat
   public var draggerBackgroundColor: UIKit.UIColor
   public var timeLabelsOffset: CoreGraphics.CGFloat
   public var itemsTopOffset: CoreGraphics.CGFloat
+  public var alertConfig: BanubaUtilities.AlertViewConfiguration
 }
 public struct OverlayAddButtonConfig {
   public enum `Type` : Swift.String {
@@ -143,16 +144,11 @@ public struct OverlayItemConfiguration {
   public var imageInset: UIKit.UIEdgeInsets
 }
 public typealias TextButtonConfig = BanubaOverlayEditorSDK.OverlayEditor.TextButtonConfig
-public typealias BackgroundConfiguration = BanubaOverlayEditorSDK.OverlayEditor.BackgroundConfiguration
 public struct OverlayEditor {
   public struct TextButtonConfig {
     public var font: UIKit.UIFont
     public var color: UIKit.UIColor
     public var title: Swift.String
-  }
-  public struct BackgroundConfiguration {
-    public var cornerRadius: CoreGraphics.CGFloat
-    public var color: UIKit.UIColor
   }
 }
 public struct InteractivesConfiguration {
@@ -297,17 +293,6 @@ public class BanubaOverlayEditor {
   public func presentOverlayEditor(from hostController: UIKit.UIViewController, animated: Swift.Bool, completion: (() -> Swift.Void)?)
   public func dismissOverlayEditor(animated: Swift.Bool, completion: (() -> Swift.Void)?)
   @objc deinit
-}
-public enum CameraAlertType {
-  case discardChanges
-  public var title: Swift.String {
-    get
-  }
-  public static func == (a: BanubaOverlayEditorSDK.CameraAlertType, b: BanubaOverlayEditorSDK.CameraAlertType) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
 }
 public class InteractiveViewControllerFactory {
   final public let interactivesConfiguration: BanubaOverlayEditorSDK.InteractivesConfiguration
