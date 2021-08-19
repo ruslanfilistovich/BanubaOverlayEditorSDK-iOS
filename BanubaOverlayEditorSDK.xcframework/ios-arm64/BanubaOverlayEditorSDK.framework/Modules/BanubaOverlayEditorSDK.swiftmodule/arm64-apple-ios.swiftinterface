@@ -195,6 +195,8 @@ public enum VideoEditorInteractiveType {
     get
   }
 }
+public protocol OverlayEditorPlayablePreview : BanubaOverlayEditorSDK.OverlayItemDisplayable, BanubaUtilities.PlayablePreview {
+}
 @objc @_inheritsConvenienceInitializers public class InteractiveInterestViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
   weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
   @objc override dynamic public func viewDidLoad()
@@ -289,7 +291,7 @@ public protocol OverlayItemProducersViewControllerFactory : AnyObject {
 }
 public class BanubaOverlayEditor {
   weak public var delegate: BanubaOverlayEditorSDK.BanubaOverlayEditorDelegate?
-  public init(overlayEditorConfiguration: BanubaOverlayEditorSDK.OverlayEditorConfiguration, playablePreview: BanubaOverlayEditorSDK.OverlayEditorPlayablePreview, timeLineDataSource: BanubaOverlayEditorSDK.OverlayEditorTimeLineDataSourceAdoptable, overlayItemProducersViewControllerFactory: BanubaOverlayEditorSDK.OverlayItemProducersViewControllerFactory)
+  public init(overlayEditorConfiguration: BanubaOverlayEditorSDK.OverlayEditorConfiguration, playablePreview: BanubaOverlayEditorSDK.OverlayEditorPlayablePreview, timeLineDataSource: BanubaUtilities.TimeLineDataSource, overlayItemProducersViewControllerFactory: BanubaOverlayEditorSDK.OverlayItemProducersViewControllerFactory)
   public func presentOverlayEditor(from hostController: UIKit.UIViewController, animated: Swift.Bool, completion: (() -> Swift.Void)?)
   public func dismissOverlayEditor(animated: Swift.Bool, completion: (() -> Swift.Void)?)
   @objc deinit
@@ -322,45 +324,6 @@ public class InteractiveViewControllerFactory {
   @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
-}
-public protocol OverlayEditorTimeLineDataSourceAdoptable : AnyObject {
-  var durationInSeconds: Swift.Float64 { get }
-  var thumbnails: [UIKit.UIImage] { get }
-  var isAllThumbnailsFetched: Swift.Bool { get }
-  var asset: AVFoundation.AVAsset { get }
-  var thumbnailsCount: Swift.Int { get }
-  var thumbnailHeight: CoreGraphics.CGFloat { get }
-  var overlayEditorDelegate: BanubaOverlayEditorSDK.OverlayEditorTimelineDataSourceAdoptableDelegate? { get set }
-  func loadPreview(completion: @escaping (UIKit.UIImage?) -> Swift.Void, at second: Swift.Double)
-  func getImage(at index: Swift.Int) -> UIKit.UIImage?
-}
-public protocol OverlayEditorTimelineDataSourceAdoptableDelegate : AnyObject {
-  func didFinishThumbnailFetch()
-}
-public protocol OverlayEditorPlayablePreview : BanubaOverlayEditorSDK.OverlayItemDisplayable {
-  func startStopPlay(loop: Swift.Bool, fixedSpeed: Swift.Bool)
-  func startPlay(loop: Swift.Bool, fixedSpeed: Swift.Bool)
-  func stopPlay()
-  func pausePlay()
-  func resumePlay()
-  func smoothlySeek(to time: CoreMedia.CMTime)
-  func seek(to time: CoreMedia.CMTime)
-  func reloadPreview(shouldAutoStart: Swift.Bool)
-  var currentTime: Foundation.TimeInterval { get }
-  var videoDuration: Swift.Double { get }
-  var currentTimeInCMTime: CoreMedia.CMTime { get }
-  var videoDurationInCMTime: CoreMedia.CMTime { get }
-  var overlayEditorPlayerDelegate: BanubaOverlayEditorSDK.OverlayEditorPlayerDelegate? { get set }
-  var overlayEditorAdoptablePlayer: AVFoundation.AVPlayer? { get }
-  var isPlaying: Swift.Bool { get }
-  var previewView: UIKit.UIView { get }
-}
-public protocol OverlayEditorPlayerDelegate : AnyObject {
-  func playerPlaysFrameAtTime(_ time: CoreMedia.CMTime)
-  func didEndPlaying()
-}
-public protocol OverlayEditorPlayerAdoptable : AnyObject {
-  var avPlayer: AVFoundation.AVPlayer { get }
 }
 public struct GradientColorPair {
   public var gradientColors: [UIKit.UIColor]
