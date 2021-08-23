@@ -215,7 +215,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 
 
-
 /// The Interactive question configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK27EditorQuestionConfiguration")
 @interface EditorQuestionConfiguration : NSObject
@@ -950,7 +949,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma clang attribute push(__attribute__((external_source_symbol(language="Swift", defined_in="BanubaOverlayEditorSDK",generated_declaration))), apply_to=any(function,enum,objc_interface,objc_category,objc_protocol))
 # pragma pop_macro("any")
 #endif
-
 
 
 

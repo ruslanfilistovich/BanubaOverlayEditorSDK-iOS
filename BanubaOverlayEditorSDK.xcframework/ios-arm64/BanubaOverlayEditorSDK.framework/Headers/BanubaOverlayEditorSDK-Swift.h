@@ -213,7 +213,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 
 
-
 /// The Interactive question configuration
 SWIFT_CLASS("_TtC22BanubaOverlayEditorSDK27EditorQuestionConfiguration")
 @interface EditorQuestionConfiguration : NSObject
