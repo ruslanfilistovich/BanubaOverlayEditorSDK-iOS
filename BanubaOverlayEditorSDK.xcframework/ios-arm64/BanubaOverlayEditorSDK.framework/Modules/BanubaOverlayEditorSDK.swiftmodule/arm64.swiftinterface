@@ -43,6 +43,7 @@ public struct MainOverlayViewControllerConfig {
   public var timeLabelsOffset: CoreGraphics.CGFloat
   public var itemsTopOffset: CoreGraphics.CGFloat
   public var alertConfig: BanubaUtilities.AlertViewConfiguration
+  public var previewViewBackgroundConfiguration: BanubaUtilities.BackgroundConfiguration
 }
 public struct OverlayAddButtonConfig {
   public enum `Type` : Swift.String {
