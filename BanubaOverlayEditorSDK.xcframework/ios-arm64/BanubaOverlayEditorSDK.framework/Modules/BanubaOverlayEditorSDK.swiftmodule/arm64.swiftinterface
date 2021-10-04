@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name BanubaOverlayEditorSDK
 import AVFoundation
 @_exported import BanubaOverlayEditorSDK
@@ -8,6 +8,7 @@ import CoreGraphics
 import Foundation
 import Swift
 import UIKit
+import _Concurrency
 public struct OverlayEditorConfiguration {
   public var mainOverlayViewControllerConfig: BanubaOverlayEditorSDK.MainOverlayViewControllerConfig
   public var overlayType: BanubaOverlayEditorSDK.OverlayAddButtonConfig.`Type`
@@ -198,17 +199,17 @@ public enum VideoEditorInteractiveType {
 }
 public protocol OverlayEditorPlayablePreview : BanubaOverlayEditorSDK.OverlayItemDisplayable, BanubaUtilities.PlayablePreview {
 }
-@objc @_inheritsConvenienceInitializers public class InteractiveInterestViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
-  weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
-  @objc override dynamic public func viewDidLoad()
-  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
-  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class InteractiveInterestViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
+  @_Concurrency.MainActor(unsafe) weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
-extension InteractiveInterestViewController : UIKit.UITextFieldDelegate {
-  @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+extension BanubaOverlayEditorSDK.InteractiveInterestViewController : UIKit.UITextFieldDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
 }
 public protocol OverlayItem {
   var id: Swift.String { get }
@@ -231,21 +232,21 @@ public protocol InteractivePickerViewControllerDelegate : AnyObject {
   func interactivePickerViewControllerDidChangeToIdle(_ controller: BanubaOverlayEditorSDK.InteractivePickerViewController)
   func interactivePickerViewController(_ controller: BanubaOverlayEditorSDK.InteractivePickerViewController, didSelectInteractive interactive: BanubaOverlayEditorSDK.VideoEditorInteractiveType)
 }
-@objc @_inheritsConvenienceInitializers public class InteractivePickerViewController : UIKit.UIViewController {
-  public var slideInTransitioningDelegate: UIKit.UIViewControllerTransitioningDelegate? {
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class InteractivePickerViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public var slideInTransitioningDelegate: UIKit.UIViewControllerTransitioningDelegate? {
     get
     set(value)
   }
-  weak public var delegate: BanubaOverlayEditorSDK.InteractivePickerViewControllerDelegate?
-  public var configuration: BanubaOverlayEditorSDK.InteractivesPickerConfiguration? {
+  @_Concurrency.MainActor(unsafe) weak public var delegate: BanubaOverlayEditorSDK.InteractivePickerViewControllerDelegate?
+  @_Concurrency.MainActor(unsafe) public var configuration: BanubaOverlayEditorSDK.InteractivesPickerConfiguration? {
     get
     set(value)
   }
-  @objc override dynamic public func viewDidLoad()
-  @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
-  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 public struct InteractiveTest : BanubaOverlayEditorSDK.OverlayItem {
@@ -307,23 +308,23 @@ public class InteractiveViewControllerFactory {
   public func makeInteractiveEditorQuestionViewController(with overlayItem: BanubaOverlayEditorSDK.OverlayItem?) -> BanubaOverlayEditorSDK.EditorQuestionViewController
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers public class EditorQuestionViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
-  weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
-  @objc override dynamic public func viewDidLoad()
-  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
-  @objc override dynamic public func viewDidDisappear(_ animated: Swift.Bool)
-  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class EditorQuestionViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
+  @_Concurrency.MainActor(unsafe) weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers public class InteractivePollViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
-  weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
-  @objc override dynamic public func viewDidLoad()
-  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
-  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class InteractivePollViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
+  @_Concurrency.MainActor(unsafe) weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 public struct GradientColorPair {
@@ -379,20 +380,20 @@ public protocol OverlayItemDisplayable : BanubaOverlayEditorSDK.OverlayItemConsu
   func showOverlayItems()
   func reloadOverlayItems()
 }
-@objc @_inheritsConvenienceInitializers public class InteractiveTestViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
-  weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
-  @objc override dynamic public func viewDidLoad()
-  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
-  @objc override dynamic public func viewDidDisappear(_ animated: Swift.Bool)
-  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class InteractiveTestViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
+  @_Concurrency.MainActor(unsafe) weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
-extension InteractiveTestViewController : UIKit.UITextViewDelegate {
-  @objc dynamic public func textView(_ textView: UIKit.UITextView, shouldChangeTextIn range: Foundation.NSRange, replacementText text: Swift.String) -> Swift.Bool
-  @objc dynamic public func textViewDidChangeSelection(_ textView: UIKit.UITextView)
-  @objc dynamic public func textViewDidChange(_ textView: UIKit.UITextView)
+extension BanubaOverlayEditorSDK.InteractiveTestViewController : UIKit.UITextViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textView(_ textView: UIKit.UITextView, shouldChangeTextIn range: Foundation.NSRange, replacementText text: Swift.String) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textViewDidChangeSelection(_ textView: UIKit.UITextView)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textViewDidChange(_ textView: UIKit.UITextView)
 }
 public struct EditorQuestion : BanubaOverlayEditorSDK.OverlayItem {
   public var id: Swift.String
