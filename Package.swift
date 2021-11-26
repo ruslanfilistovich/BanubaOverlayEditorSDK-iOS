@@ -14,5 +14,6 @@ let package = Package(
   targets: [
     .binaryTarget(
       name: "BanubaOverlayEditorSDK",
-      path: "BanubaOverlayEditorSDK.xcframework")
+      path: "BanubaOverlayEditorSDK.xcframework"),
+    .target: (name: "BanubaOverlayEditorSDK")
   ])
