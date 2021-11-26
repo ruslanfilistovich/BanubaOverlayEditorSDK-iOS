@@ -3,7 +3,8 @@ import PackageDescription
 let package = Package(
   name: "BanubaOverlayEditorSDK",
   platforms: [
-    .iOS(.v11)
+    .iOS(.v11),
+    .macOS(.v10_15)
   ],
   products: [
     .library(
