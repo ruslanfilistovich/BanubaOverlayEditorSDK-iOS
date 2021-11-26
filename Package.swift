@@ -4,7 +4,6 @@ let package = Package(
   name: "BanubaOverlayEditorSDK",
   platforms: [
     .iOS(.v11),
-    .macOS(.v10_15)
   ],
   products: [
     .library(
@@ -15,5 +14,4 @@ let package = Package(
     .binaryTarget(
       name: "BanubaOverlayEditorSDK",
       path: "BanubaOverlayEditorSDK.xcframework"),
-    .target: (name: "BanubaOverlayEditorSDK")
   ])
