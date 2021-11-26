@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
 // swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name BanubaOverlayEditorSDK
 import AVFoundation
 @_exported import BanubaOverlayEditorSDK
@@ -199,6 +199,14 @@ public enum VideoEditorInteractiveType {
 }
 public protocol OverlayEditorPlayablePreview : BanubaOverlayEditorSDK.OverlayItemDisplayable, BanubaUtilities.PlayablePreview {
 }
+@_hasMissingDesignatedInitializers final public class OverlayItemLinePosition : Swift.Equatable, Swift.Hashable {
+  public static func == (lhs: BanubaOverlayEditorSDK.OverlayItemLinePosition, rhs: BanubaOverlayEditorSDK.OverlayItemLinePosition) -> Swift.Bool
+  final public func hash(into hasher: inout Swift.Hasher)
+  @objc deinit
+  final public var hashValue: Swift.Int {
+    get
+  }
+}
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class InteractiveInterestViewController : UIKit.UIViewController, BanubaOverlayEditorSDK.OverlayItemProducibleViewController {
   @_Concurrency.MainActor(unsafe) weak public var delegate: BanubaOverlayEditorSDK.OverlayItemProducibleViewControllerDelegate?
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
@@ -221,10 +229,12 @@ public protocol OverlayItem {
   var frame: CoreGraphics.CGRect { get set }
   var transform: CoreGraphics.CGAffineTransform { get set }
   var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.`Type`? { get }
+  var position: BanubaOverlayEditorSDK.OverlayItemLinePosition? { get set }
 }
-public enum OverlayItemPresentationStyle {
+public enum OverlayItemPresentationStyle : Swift.Equatable {
   case text(Swift.String)
   case image(UIKit.UIImage)
+  public static func == (a: BanubaOverlayEditorSDK.OverlayItemPresentationStyle, b: BanubaOverlayEditorSDK.OverlayItemPresentationStyle) -> Swift.Bool
 }
 public protocol InteractivePickerViewControllerDelegate : AnyObject {
   func interactivePickerViewController(_ controller: BanubaOverlayEditorSDK.InteractivePickerViewController, presentMessage message: Swift.String)
@@ -266,6 +276,7 @@ public struct InteractiveTest : BanubaOverlayEditorSDK.OverlayItem {
   public var frame: CoreGraphics.CGRect
   public var transform: CoreGraphics.CGAffineTransform
   public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.`Type`?
+  public var position: BanubaOverlayEditorSDK.OverlayItemLinePosition?
   public init(id: Swift.String, title: Swift.String, image: UIKit.UIImage, color: BanubaOverlayEditorSDK.GradientColorPair, fields: [BanubaOverlayEditorSDK.InteractiveTestFieldData], startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
 }
 public struct InteractiveTestFieldData {
@@ -348,6 +359,7 @@ public struct InteractiveInterest : BanubaOverlayEditorSDK.OverlayItem {
   public var frame: CoreGraphics.CGRect
   public var transform: CoreGraphics.CGAffineTransform
   public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.`Type`?
+  public var position: BanubaOverlayEditorSDK.OverlayItemLinePosition?
   public init(id: Swift.String, image: UIKit.UIImage, title: Swift.String, font: UIKit.UIFont, startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
 }
 public struct InteractivePoll : BanubaOverlayEditorSDK.OverlayItem {
@@ -367,6 +379,7 @@ public struct InteractivePoll : BanubaOverlayEditorSDK.OverlayItem {
   public var frame: CoreGraphics.CGRect
   public var transform: CoreGraphics.CGAffineTransform
   public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.`Type`?
+  public var position: BanubaOverlayEditorSDK.OverlayItemLinePosition?
   public init(id: Swift.String, image: UIKit.UIImage, startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, title: Swift.String, leftCardText: Swift.String, rightCardText: Swift.String, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
 }
 public protocol OverlayItemConsumable : UIKit.UIViewController {
@@ -411,5 +424,6 @@ public struct EditorQuestion : BanubaOverlayEditorSDK.OverlayItem {
   public var frame: CoreGraphics.CGRect
   public var transform: CoreGraphics.CGAffineTransform
   public var type: BanubaOverlayEditorSDK.OverlayAddButtonConfig.`Type`?
+  public var position: BanubaOverlayEditorSDK.OverlayItemLinePosition?
   public init(id: Swift.String, text: Swift.String, color: BanubaOverlayEditorSDK.GradientColorPair, image: UIKit.UIImage, startTime: CoreMedia.CMTime, endTime: CoreMedia.CMTime, frame: CoreGraphics.CGRect = .zero, transform: CoreGraphics.CGAffineTransform = .identity)
 }
